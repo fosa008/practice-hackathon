@@ -3,8 +3,8 @@ FROM maven:3.8.5-openjdk-17 AS build
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Step 2: Run the built JAR file using a lightweight OpenJDK runtime
-FROM openjdk:17-jdk-slim
+# Step 2: Use an official eclipse-temurin image to run the app smoothly
+FROM eclipse-temurin:17-jre-alpine
 COPY --from=build /target/app-1.0.0.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
