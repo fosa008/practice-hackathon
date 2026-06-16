@@ -1,0 +1,5 @@
+com/hackathon/app/repository/TaskRepository.class
+com/hackathon/app/model/TaskData.class
+com/hackathon/app/Application.class
+com/hackathon/app/controller/ApiController.class
+com/hackathon/app/controller/TaskController.class
