@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ai-operational-portal
+    env: static
+    runtime: image
+    repo: https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME # ◄ Update with your GitHub link!
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/app-1.0.0.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
