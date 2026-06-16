@@ -12,19 +12,34 @@ An individual practical simulation full-stack application built to demonstrate i
 
 Below is the conceptual system flow mapping the 4 required quadrants. 
 
-[Web Frontend UI: index.html]
-│
-│ (1) User submits unstructured text phrase via HTTP POST Request
-▼
-[Java Backend: TaskController.java]
-│
-├─► (2) DM / ML Heuristic Processing Layer (Extracts & evaluates value metrics)
-│
-│ (3) JPA Entity Object mapping
-▼
-[Relational Database: H2 Engine Instance]
-│
-└─► (4) Stores record persistent state -> Returns synced JSON payload -> UI updates live table
+```text
+┌──────────────────────────────────────────────────────────┐
+│               Web Frontend UI (index.html)               │
+└────────────────────────────┬─────────────────────────────┘
+                             │
+                             │ (1) HTTP POST Request (Text Phrase)
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│            Java Backend (TaskController.java)            │
+├──────────────────────────────────────────────────────────┤
+│  ⚙️  DM / ML Heuristic Processing Layer                  │
+│     - Extracts Keywords & Computes Metric Scores         │
+│     - Determines Classification Decision State           │
+└────────────────────────────┬─────────────────────────────┘
+                             │
+                             │ (2) Hibernate JPA Entity Mapping
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│         Relational Database (H2 Engine Instance)         │
+├──────────────────────────────────────────────────────────┤
+│  💾 Records Data Persistence State                       │
+└────────────────────────────┬─────────────────────────────┘
+                             │
+                             │ (3) Synced JSON Payload Returned
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│            Web Frontend UI (Live Table Update)           │
+└──────────────────────────────────────────────────────────┘
 
 ### The 4 Integrated Quadrants:
 1. **Java Backend (Spring Boot):** Acts as the foundational RESTful API gateway, managing request-response routing lifecycle hooks, CORS control, and system controller definitions.
